@@ -5,10 +5,23 @@ import Rotate from './three/rotate';
 import ThreeScene from './three/scene';
 import ThreeViewer from './three/viewer';
 
+import isMobile from '@utils/isMobile';
+import isConnectingWifi from '@utils/isConnectingWifi';
+
+type ModelName = 'otohime' | 'curing' | '';
+
 const App: FunctionalComponent = () => {
+  // pc or smp(wifi) のみ初回読み込み実行で、それ以外はボタン押下しないとvrmを読み込まない
+  // 通信容量削減のために
+  const firstLoadModel: ModelName = !isMobile()
+    ? 'otohime'
+    : isConnectingWifi()
+    ? 'otohime'
+    : '';
+
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [modelType, setModelType] = useState<'otohime' | 'curing'>('otohime');
+  const [modelType, setModelType] = useState<ModelName>(firstLoadModel);
   const [isRotate, setIsRotate] = useState(true);
 
   const divRef = useRef<HTMLDivElement>();
