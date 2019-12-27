@@ -1,4 +1,4 @@
-import { sum } from '../preact/test_sample';
+import {sum} from '../src/test_sample';
 
 test('basic', () => {
   expect(sum()).toBe(0);

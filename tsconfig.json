@@ -18,6 +18,5 @@
     "paths": {
       "@utils/*": ["src/ts/utils/*"]
     }
-  },
-  "include": ["preact"]
+  }
 }
